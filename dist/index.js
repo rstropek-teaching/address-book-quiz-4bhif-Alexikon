@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const restify_1 = require("restify");
+const getContacts_1 = require("./getContacts");
+const postContact_1 = require("./postContact");
+const deleteContact_1 = require("./deleteContact");
+var server = restify_1.createServer();
+server.use(restify_1.plugins.bodyParser());
+server.get('/contacts', getContacts_1.getAll);
+server.post('/contacts', postContact_1.post);
+server.del('/contacts/:id', deleteContact_1.deleteSingle);
+server.listen(8080, () => console.log('API is listening'));
